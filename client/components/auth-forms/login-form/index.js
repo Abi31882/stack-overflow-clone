@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import cn from 'classnames'
 
 import { publicFetch } from '../../../util/fetcher'
 import { AuthContext } from '../../../store/auth'
@@ -10,7 +11,7 @@ import { Close } from '../../icons'
 import FormInput from '../../form-input'
 import Button from '../../button'
 
-import './login-form.module.css'
+import styles from './login-form.module.css'
 
 const LoginForm = () => {
   const { ref, setIsComponentVisible } = useContext(ModalContext)
@@ -58,31 +59,28 @@ const LoginForm = () => {
       }) => (
         <div>
           <div
-            style={{
-              display: 'flex',
-              padding: '1rem 1rem',
-              justifyContent: 'space-between',
-              borderBottom: '1px solid #dee2e6',
-              borderTopLeftRadius: 'calc(0.3rem - 1px)',
-              borderTopRightRadius: 'calc(0.3rem - 1px)',
-              alignItems: 'center'
-            }}
+            // style={{
+            //   display: 'flex',
+            //   padding: '1rem 1rem',
+            //   justifyContent: 'space-between',
+            //   borderBottom: '1px solid #dee2e6',
+            //   borderTopLeftRadius: 'calc(0.3rem - 1px)',
+            //   borderTopRightRadius: 'calc(0.3rem - 1px)',
+            //   alignItems: 'center'
+            // }}
+            className={cn(styles.modalHeader)}
           >
             <h5
-              style={{
-                fontWeight: '500',
-                marginBlockStart: '1.67em',
-                marginBlockEnd: '1.67em'
-              }}
+              // style={{
+              //   fontWeight: '500',
+              //   marginBlockStart: '1.67em',
+              //   marginBlockEnd: '1.67em',
+              //   fontSize: '13px'
+              // }}
+              className={cn(styles.modalTitle)}
             >
               Good to see You again
             </h5>
-            <Button
-              // className={styles.closeButton}
-              onClick={() => setIsComponentVisible((isOpen) => !isOpen)}
-            >
-              <Close />
-            </Button>
           </div>
           <form>
             <label htmlFor="Username" />

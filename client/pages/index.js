@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-
 import { publicFetch } from '../util/fetcher'
 
 import Layout from '../components/layout'
@@ -11,7 +10,7 @@ import QuestionSummary from '../components/question/question-summary'
 import PageTitle from '../components/page-title'
 import ButtonGroup from '../components/button-group'
 import { Spinner } from '../components/icons'
-
+// import img1 from '../images/anonymousHeroQuestions.svg'
 const HomePage = () => {
   const router = useRouter()
 
@@ -52,62 +51,72 @@ const HomePage = () => {
   }
 
   return (
-    <Layout>
-      <Head>
-        <title>
-          {router.query.tag ? router.query.tag : 'Questions'} - Clone of
-          Stackoverflow
-        </title>
-      </Head>
+    <div>
+      <Layout>
+        <Head>
+          <title>
+            {router.query.tag ? router.query.tag : 'Questions'} - Clone of
+            Stackoverflow
+          </title>
+        </Head>
 
-      <PageTitle title={router.query.tag ? `Questions tagged [${router.query.tag}]` : 'All Questions'} button borderBottom={false} />
+        <PageTitle
+          title={
+            router.query.tag
+              ? `Questions tagged [${router.query.tag}]`
+              : 'All Questions'
+          }
+          button
+          borderBottom={false}
+        />
 
-      <ButtonGroup
-        borderBottom
-        buttons={['Votes', 'Views', 'Newest', 'Oldest']}
-        selected={sortType}
-        setSelected={setSortType}
-      />
+        <ButtonGroup
+          borderBottom
+          buttons={['Votes', 'Views', 'Newest', 'Oldest']}
+          selected={sortType}
+          setSelected={setSortType}
+        />
 
-      {!questions && (
-        <div className="loading">
-          <Spinner />
-        </div>
-      )}
-
-      {questions
-        ?.sort(handleSorting())
-        .map(
-          ({
-            id,
-            votes,
-            answers,
-            views,
-            title,
-            text,
-            tags,
-            author,
-            created
-          }) => (
-            <QuestionWrapper key={id}>
-              <QuestionStats
-                voteCount={votes.length}
-                answerCount={answers.length}
-                view={views}
-              />
-              <QuestionSummary
-                id={id}
-                title={title}
-                tags={tags}
-                author={author}
-                createdTime={created}
-              >
-                {text}
-              </QuestionSummary>
-            </QuestionWrapper>
-          )
+        {!questions && (
+          <div className="loading">
+            <Spinner />
+          </div>
         )}
-    </Layout>
+
+        {questions
+          ?.sort(handleSorting())
+          .map(
+            ({
+              id,
+              votes,
+              answers,
+              views,
+              title,
+              text,
+              tags,
+              author,
+              created
+            }) => (
+              <QuestionWrapper key={id}>
+                <QuestionStats
+                  voteCount={votes.length}
+                  answerCount={answers.length}
+                  view={views}
+                />
+                <QuestionSummary
+                  id={id}
+                  title={title}
+                  tags={tags}
+                  author={author}
+                  createdTime={created}
+                >
+                  {text}
+                </QuestionSummary>
+              </QuestionWrapper>
+            )
+          )}
+      </Layout>
+    </div>
   )
 }
 

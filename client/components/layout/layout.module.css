@@ -19,7 +19,6 @@
   @media (--m) {
     grid-template-columns: 164px 1fr;
   }
-
 }
 
 .container {

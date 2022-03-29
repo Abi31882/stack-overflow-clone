@@ -10,12 +10,14 @@ import Extra from './extra'
 import Header from './header'
 
 import styles from './layout.module.css'
+import MainScreen from './mainScreen'
 
 const Layout = ({ extra = true, children }) => {
   const size = useWindowSize()
   return (
     <div className={styles.layout}>
       <Header />
+      <MainScreen />
       <div className={styles.container}>
         <div className={cn(styles.body, !extra && styles.main)}>
           {size.width > CONST.MOBILE_SIZE && <Sidebar />}

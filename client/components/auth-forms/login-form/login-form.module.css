@@ -1,4 +1,4 @@
-.modal-header {
+.modalHeader {
   display: flex;
   justify-content: space-between;
   padding: 1rem 1rem;
@@ -6,4 +6,10 @@
   border-top-left-radius: calc(0.3rem - 1px);
   border-top-right-radius: calc(0.3rem - 1px);
   align-items: center;
+}
+.modalTitle {
+  font-weight: 500;
+  margin-block-start: 1.67em;
+  margin-block-end: 1.67em;
+  font-size: 13px;
 }
